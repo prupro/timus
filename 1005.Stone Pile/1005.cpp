@@ -1,15 +1,19 @@
 #include<iostream>
 using namespace std;
 
-bool maxLessThan( int n, int w[], int halfDiff, int *index){
-	int max = 0;
+inline int absdiff(int a, int b){
+	if (a>b) return a-b;
+	return b-a;
+}
+bool numCloseToDiff( int n, int w[], int halfDiff, int *index){
+	int diff = halfDiff;
 	int ind = 0;
-	
+
 	bool found = 0;
 	for(int i=0;i<n;i++){
-		if(w[i] >max && w[i] <= halfDiff && w[i] > 0 ) {
+		if( absdiff(w[i],halfDiff) < diff && w[i] > 0 ) {
 			found = 1; 
-			max = w[i]; 
+			diff = absdiff(w[i],halfDiff);
 			ind = i;
 		}	
 	}	
@@ -31,13 +35,13 @@ int main(){
 
 	int index=0;
 
-	while(	maxLessThan(n, w, (sum1-sum2)/2, &index) ){
+	while(	numCloseToDiff(n, w, (sum1-sum2)/2, &index) ){
 		sum1 -= w[index];
 		sum2 += w[index];
 		w[index] = 0;	
 
 	}	
 
-	cout << sum1-sum2 << endl;
+	cout << absdiff(sum1,sum2)<< endl;
 	return 0;
 }
