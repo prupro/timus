@@ -35,7 +35,7 @@ int main(){
 
 	int index=0;
 
-	while(	numCloseToDiff(n, w, (sum1-sum2)/2, &index) ){
+	while(	numCloseToDiff(n, w, absdiff(sum1,sum2)/2, &index) ){
 		sum1 -= w[index];
 		sum2 += w[index];
 		w[index] = 0;	
