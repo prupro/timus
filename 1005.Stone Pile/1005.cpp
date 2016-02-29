@@ -7,7 +7,7 @@ bool maxLessThan( int n, int w[], int halfDiff, int *index){
 	
 	bool found = 0;
 	for(int i=0;i<n;i++){
-		if(w[i] >max && w[i] <= halfDiff ) {found = 1; max = w[i]; ind = i;}	
+		if(w[i] >max && w[i] <= halfDiff && w[i] > 0 ) {found = 1; max = w[i]; ind = i;}	
 	}	
 
 	*index = ind;
