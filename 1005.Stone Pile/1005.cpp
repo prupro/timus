@@ -5,7 +5,7 @@ inline int absdiff(int a, int b){
 	if (a>b) return a-b;
 	return b-a;
 }
-bool numCloseToDiff( int n, int w[], int halfDiff, int *index){
+bool numCloseToDiff( int n, int w[], int halfDiff, int &index){
 	int diff = halfDiff;
 	int ind = 0;
 
@@ -18,7 +18,7 @@ bool numCloseToDiff( int n, int w[], int halfDiff, int *index){
 		}	
 	}	
 
-	*index = ind;
+	index = ind;
 
 	return found;
 }
@@ -35,7 +35,7 @@ int main(){
 
 	int index=0;
 
-	while(	numCloseToDiff(n, w, absdiff(sum1,sum2)/2, &index) ){
+	while(	numCloseToDiff(n, w, absdiff(sum1,sum2)/2, index) ){
 		sum1 -= w[index];
 		sum2 += w[index];
 		w[index] = 0;	
