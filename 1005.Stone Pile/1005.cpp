@@ -47,8 +47,10 @@ int main(){
 	int sum=0, sum1=0, sum2=0;
 	cin >> n;
 	int *w = new int[n];
+	int *w1 = new int[n];
 	for(int i=0;i<n;i++){
 		cin >> w[i];
+		w1[i] = w[i];
 		sum += w[i];		
 	}
 
@@ -67,17 +69,16 @@ int main(){
 	sum1 = sum;
 	sum2 = 0;	
 
-	while(	maxLessThan(n, w, (sum1-sum2)/2, index) ){
-		sum1 -= w[index];
-		sum2 += w[index];
-		w[index] = 0;	
+	while(	maxLessThan(n, w1, (sum1-sum2)/2, index) ){
+		sum1 -= w1[index];
+		sum2 += w1[index];
+		w1[index] = 0;	
 
 	}	
 	int diff2 = absdiff(sum1,sum2);
 	
 	if (diff1 > diff2) cout << diff2 << endl;
 	else cout << diff1 << endl;
-
 
 	return 0;
 }
