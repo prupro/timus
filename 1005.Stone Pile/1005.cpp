@@ -5,6 +5,7 @@ inline int absdiff(int a, int b){
 	if (a>b) return a-b;
 	return b-a;
 }
+
 bool numCloseToDiff( int n, int w[], int halfDiff, int &index){
 	int diff = halfDiff;
 	int ind = 0;
@@ -23,17 +24,37 @@ bool numCloseToDiff( int n, int w[], int halfDiff, int &index){
 	return found;
 }
 
+bool maxLessThan( int n, int w[], int halfDiff, int &index){
+	int max = 0;
+	int ind = 0;
+
+	bool found = 0;
+	for(int i=0;i<n;i++){
+		if(w[i] >max && w[i] <= halfDiff && w[i] > 0 ) {
+			found = 1;
+			max = w[i];
+			ind = i;
+		}
+	}
+
+	index = ind;
+
+	return found;
+}
+
 int main(){
 	int n;
-	int sum1=0, sum2=0;
+	int sum=0, sum1=0, sum2=0;
 	cin >> n;
 	int *w = new int[n];
 	for(int i=0;i<n;i++){
 		cin >> w[i];
-		sum1 += w[i];		
+		sum += w[i];		
 	}
 
 	int index=0;
+	
+	sum1 = sum;
 
 	while(	numCloseToDiff(n, w, absdiff(sum1,sum2)/2, index) ){
 		sum1 -= w[index];
@@ -41,7 +62,22 @@ int main(){
 		w[index] = 0;	
 
 	}	
+	int diff1 = absdiff(sum1,sum2);
+	
+	sum1 = sum;
+	sum2 = 0;	
 
-	cout << absdiff(sum1,sum2)<< endl;
+	while(	maxLessThan(n, w, (sum1-sum2)/2, index) ){
+		sum1 -= w[index];
+		sum2 += w[index];
+		w[index] = 0;	
+
+	}	
+	int diff2 = absdiff(sum1,sum2);
+	
+	if (diff1 > diff2) cout << diff1 << endl;
+	else cout << diff2 << endl;
+
+
 	return 0;
 }
