@@ -75,8 +75,8 @@ int main(){
 	}	
 	int diff2 = absdiff(sum1,sum2);
 	
-	if (diff1 > diff2) cout << diff1 << endl;
-	else cout << diff2 << endl;
+	if (diff1 > diff2) cout << diff2 << endl;
+	else cout << diff1 << endl;
 
 
 	return 0;
